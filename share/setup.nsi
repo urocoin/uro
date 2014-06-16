@@ -5,9 +5,9 @@ SetCompressor /SOLID lzma
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 0.8.6.0
-!define COMPANY "Uro project"
-!define URL http://www.Uro.org/
+!define VERSION 1.0.0.1
+!define COMPANY "Uro Foundation"
+!define URL http://www.uro.io/
 
 # MUI Symbol Definitions
 !define MUI_ICON "../share/pixmaps/bitcoin.ico"
@@ -45,13 +45,13 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile Uro-0.8.6.0-win32-setup.exe
+OutFile Uro-1.0.0.1-win32-setup.exe
 InstallDir $PROGRAMFILES\Uro
 CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
-VIProductVersion 0.8.6.0
+VIProductVersion 1.0.0.1
 VIAddVersionKey ProductName Uro
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"
