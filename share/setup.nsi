@@ -5,7 +5,7 @@ SetCompressor /SOLID lzma
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 1.0.0.1
+!define VERSION 1.0.1.1
 !define COMPANY "Uro Foundation"
 !define URL http://www.uro.io/
 
@@ -45,13 +45,13 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile Uro-1.0.0.1-win32-setup.exe
+OutFile Uro-1.0.1.1-win32-setup.exe
 InstallDir $PROGRAMFILES\Uro
 CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
-VIProductVersion 1.0.0.1
+VIProductVersion 1.0.1.1
 VIAddVersionKey ProductName Uro
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"
