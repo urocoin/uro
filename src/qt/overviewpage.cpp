@@ -105,6 +105,7 @@ OverviewPage::OverviewPage(QWidget *parent) :
     ui->setupUi(this);
 
     // Recent transactions
+
     ui->listTransactions->setItemDelegate(txdelegate);
     ui->listTransactions->setIconSize(QSize(DECORATION_SIZE, DECORATION_SIZE));
     ui->listTransactions->setMinimumHeight(NUM_ITEMS * (DECORATION_SIZE + 2));
@@ -137,6 +138,7 @@ void OverviewPage::setBalance(qint64 balance, qint64 unconfirmedBalance, qint64 
     currentBalance = balance;
     currentUnconfirmedBalance = unconfirmedBalance;
     currentImmatureBalance = immatureBalance;
+
     ui->labelBalance->setText(BitcoinUnits::formatWithUnit(unit, balance));
     ui->labelUnconfirmed->setText(BitcoinUnits::formatWithUnit(unit, unconfirmedBalance));
     ui->labelImmature->setText(BitcoinUnits::formatWithUnit(unit, immatureBalance));
@@ -172,8 +174,15 @@ void OverviewPage::setWalletModel(WalletModel *model)
         filter->setSortRole(Qt::EditRole);
         filter->sort(TransactionTableModel::Status, Qt::DescendingOrder);
 
+        //marketcap and ticker
+        ui->btcUro->setText("N/A");
+        ui->marketCap->setText("N/A");
+
+
         ui->listTransactions->setModel(filter);
         ui->listTransactions->setModelColumn(TransactionTableModel::ToAddress);
+        //moneysupply
+        ui->moneySupply->setText(model->moneySupply() + " URO");
 
         // Keep up to date with wallet
         setBalance(model->getBalance(), model->getUnconfirmedBalance(), model->getImmatureBalance());

@@ -1656,9 +1656,6 @@ public:
     // Verification status of this block. See enum BlockStatus
     unsigned int nStatus;
 
-    // money supply varbile
-    int64 nMoneySupply;
-
     // block header
     int nVersion;
     uint256 hashMerkleRoot;

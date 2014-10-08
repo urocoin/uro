@@ -390,6 +390,35 @@ bool AddressTableModel::removeRows(int row, int count, const QModelIndex &parent
     return true;
 }
 
+// get address balance using hash map
+int64_t AddressTableModel:: getBalance(const std::string address) const //const QString &address
+{
+    CTxDestination account;
+    int64 addressBalance;
+    std::map<CTxDestination, int64> balanceMap;
+
+    if(!wallet) return 0; // debug
+    //CONVERT ADDRESS STRING to.... CTxDESTINATION for map loopup
+    account = CBitcoinAddress(address).Get();
+
+    //Lock and preform command
+    //LOCK(cs_main); //LOCK(wallet->cs_wallet);
+    balanceMap = wallet->GetAddressBalances(); //GetAddressBalances takes its own lock...NOT: LOCK(wallet->cs_wallet); but LOCK(cs_main); ?
+    //this above line causes: void boost::recursive_mutex::lock(): Assertion `!pthread_mutex_lock(&m)' failed.
+    //when above line is commented out this works fine whats up.
+
+    //grab the account/address balance
+    addressBalance = balanceMap[account];
+    addressBalance = 1; //TESTING REMOVE WHEN DONE
+
+    //if(addressBalance <= 0.00000000){
+    //    addressBalance = 0;
+    //}
+
+    return addressBalance;
+}
+
+//
 /* Look up label for address in address book, if not found return empty string.
  */
 QString AddressTableModel::labelForAddress(const QString &address) const
@@ -405,6 +434,8 @@ QString AddressTableModel::labelForAddress(const QString &address) const
     }
     return QString();
 }
+
+
 
 int AddressTableModel::lookupAddress(const QString &address) const
 {
@@ -424,3 +455,5 @@ void AddressTableModel::emitDataChanged(int idx)
 {
     emit dataChanged(index(idx, 0, QModelIndex()), index(idx, columns.length()-1, QModelIndex()));
 }
+
+

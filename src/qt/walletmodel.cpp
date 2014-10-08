@@ -62,6 +62,28 @@ qint64 WalletModel::getImmatureBalance() const
     return wallet->GetImmatureBalance();
 }
 
+QString WalletModel::moneySupply() const //money supply hack
+{
+  int rewardChangeBlock = 83333;
+  int rewardPerBlockAfterChange =12;
+  int rewardPerBlockBeforeChange = 0.6;
+  int moneySupply = 0;
+
+  if((int)nBestHeight >= rewardChangeBlock){
+      moneySupply = (rewardChangeBlock * rewardPerBlockAfterChange) + (((int)nBestHeight - rewardChangeBlock) * rewardPerBlockBeforeChange);
+  }
+  else{
+      moneySupply = (int)nBestHeight * rewardPerBlockAfterChange;
+  }
+
+  std::stringstream asAstring;
+  asAstring << moneySupply;
+  std::string moneySupplyString = asAstring.str();
+
+  return QString::fromStdString(moneySupplyString);
+
+}
+
 int WalletModel::getNumTransactions() const
 {
     int numTransactions = 0;

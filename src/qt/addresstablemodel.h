@@ -16,12 +16,14 @@ class AddressTableModel : public QAbstractTableModel
     Q_OBJECT
 
 public:
-    explicit AddressTableModel(CWallet *wallet, WalletModel *parent = 0);
+     AddressTableModel(){}
+     AddressTableModel(CWallet *wallet, WalletModel *parent = 0);
     ~AddressTableModel();
 
     enum ColumnIndex {
         Label = 0,   /**< User specified label */
-        Address = 1  /**< Bitcoin address */
+        Address = 1,  /**< Bitcoin address */
+        Balance = 2  /**< Bitcoin address */
     };
 
     enum RoleIndex {
@@ -61,6 +63,9 @@ public:
     /* Look up label for address in address book, if not found return empty string.
      */
     QString labelForAddress(const QString &address) const;
+
+    //get balance from address
+    int64_t getBalance(const std::string address) const;
 
     /* Look up row index of an address in the model.
        Return -1 if not found.
