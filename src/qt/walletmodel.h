@@ -68,7 +68,6 @@ public:
     qint64 getImmatureBalance() const;
     int getNumTransactions() const;
     EncryptionStatus getEncryptionStatus() const;
-    QString moneySupply() const; //moneysupply
 
     // Check address for validity
     bool validateAddress(const QString &address);

@@ -249,12 +249,9 @@ bool RPCConsole::eventFilter(QObject* obj, QEvent *event)
     return QDialog::eventFilter(obj, event);
 }
 
-
 void RPCConsole::setClientModel(ClientModel *model)
 {
     this->clientModel = model;
-    //
-
     if(model)
     {
         // Subscribe to information, replies, messages, errors
@@ -262,8 +259,6 @@ void RPCConsole::setClientModel(ClientModel *model)
         connect(model, SIGNAL(numBlocksChanged(int,int)), this, SLOT(setNumBlocks(int,int)));
 
         // Provide initial values
-        // moneysupply
-        ui->moneySupply->setText(model->moneySupply());
         ui->clientVersion->setText(model->formatFullVersion());
         ui->clientName->setText(model->clientName());
         ui->buildDate->setText(model->formatBuildDate());

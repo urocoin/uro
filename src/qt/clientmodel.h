@@ -48,7 +48,7 @@ public:
     int getNumBlocksOfPeers() const;
     //! Return warnings to be displayed in status bar
     QString getStatusBarWarnings() const;
-    QString moneySupply() const; //moneysupply hack
+
     QString formatFullVersion() const;
     QString formatBuildDate() const;
     bool isReleaseVersion() const;

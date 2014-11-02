@@ -1,5 +1,8 @@
-Uro - URO
+Uro
+========
 
-Copyright (c) 2009-2013 Bitcoin Developers
-Copyright (c) 2011-2013 Litecoin Developers
-Copyright (c) 2014 Uro Developers
+Uro is a currency pegged to the value of 1 metric tonne of Urea.
+
+http://uro.io/
+
+https://kiwiirc.com/client/irc.freenode.org/#uro

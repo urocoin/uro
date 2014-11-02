@@ -59,25 +59,6 @@ string AccountFromValue(const Value& value)
     return strAccount;
 }
 
-// cheap hack, but hey it works - scottie
-int moneysupply()
-{
-  int rewardChangeBlock = 83333;
-  int rewardPerBlockAfterChange =12;
-  int rewardPerBlockBeforeChange = 0.6;
-  int moneySupply = 0;
-
-  if((int)nBestHeight >= rewardChangeBlock){
-      moneySupply = (rewardChangeBlock * rewardPerBlockAfterChange) + (((int)nBestHeight - rewardChangeBlock) * rewardPerBlockBeforeChange);     
-  }
-  else{
-      moneySupply = (int)nBestHeight * rewardPerBlockAfterChange;
-  }
-
-  return moneySupply;
-}
-//
-
 Value getinfo(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)
@@ -89,7 +70,6 @@ Value getinfo(const Array& params, bool fHelp)
     GetProxy(NET_IPV4, proxy);
 
     Object obj;
-    obj.push_back(Pair("moneysupply",   moneysupply()));
     obj.push_back(Pair("version",       (int)CLIENT_VERSION));
     obj.push_back(Pair("protocolversion",(int)PROTOCOL_VERSION));
     if (pwalletMain) {

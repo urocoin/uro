@@ -46,10 +46,6 @@ private slots:
     void updateDisplayUnit();
     void handleProxyIpValid(QValidatedLineEdit *object, bool fState);
 
-    void on_coinControlFeatures_clicked();
-
-    void on_coinControlFeatures_toggled(bool checked);
-
 signals:
     void proxyIpValid(QValidatedLineEdit *object, bool fValid);
 

@@ -44,28 +44,6 @@ int ClientModel::getNumBlocks() const
     return nBestHeight;
 }
 
-QString ClientModel::moneySupply() const //money supply hack
-{
-  int rewardChangeBlock = 83333;
-  int rewardPerBlockAfterChange =12;
-  int rewardPerBlockBeforeChange = 0.6;
-  int moneySupply = 0;
-
-  if((int)nBestHeight >= rewardChangeBlock){
-      moneySupply = (rewardChangeBlock * rewardPerBlockAfterChange) + (((int)nBestHeight - rewardChangeBlock) * rewardPerBlockBeforeChange);
-  }
-  else{
-      moneySupply = (int)nBestHeight * rewardPerBlockAfterChange;
-  }
-
-  std::stringstream asAstring;
-  asAstring << moneySupply;
-  std::string moneySupplyString = asAstring.str();
-
-  return QString::fromStdString(moneySupplyString);
-
-}
-
 int ClientModel::getNumBlocksAtStartup()
 {
     if (numBlocksAtStartup == -1) numBlocksAtStartup = getNumBlocks();
