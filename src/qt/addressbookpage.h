@@ -78,15 +78,12 @@ private slots:
     /** Export button clicked */
     void on_exportButton_clicked();
 
-
     /** Set button states based on selected tab and selection */
     void selectionChanged();
     /** Spawn contextual menu (right mouse menu) for address book entry */
     void contextualMenu(const QPoint &point);
     /** New entry/entries were added to address table */
     void selectNewAddress(const QModelIndex &parent, int begin, int /*end*/);
-
-    void on_getBalanceButton_clicked();
 
 signals:
     void signMessage(QString addr);

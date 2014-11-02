@@ -17,12 +17,6 @@
 #include <QMessageBox>
 #include <QMenu>
 
-#include <sstream>
-#include <string>
-#include <iostream>
-
-#include <boost/lexical_cast.hpp>
-
 AddressBookPage::AddressBookPage(Mode mode, Tabs tab, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AddressBookPage),
@@ -35,7 +29,6 @@ AddressBookPage::AddressBookPage(Mode mode, Tabs tab, QWidget *parent) :
 
 #ifdef Q_OS_MAC // Icons on push buttons are very uncommon on Mac
     ui->newAddress->setIcon(QIcon());
-    ui->getBalanceButton->setIcon(QIcon());
     ui->copyAddress->setIcon(QIcon());
     ui->deleteAddress->setIcon(QIcon());
     ui->verifyMessage->setIcon(QIcon());
@@ -54,11 +47,9 @@ AddressBookPage::AddressBookPage(Mode mode, Tabs tab, QWidget *parent) :
         ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
         ui->tableView->setFocus();
         ui->exportButton->hide();
-        ui->getBalanceButton->setVisible(false);
         break;
     case ForEditing:
         ui->buttonBox->setVisible(false);
-        ui->getBalanceButton->setVisible(false);
         break;
     }
     switch(tab)
@@ -67,13 +58,11 @@ AddressBookPage::AddressBookPage(Mode mode, Tabs tab, QWidget *parent) :
         ui->labelExplanation->setText(tr("These are your Uro addresses for sending payments. Always check the amount and the receiving address before sending coins."));
         ui->deleteAddress->setVisible(true);
         ui->signMessage->setVisible(false);
-        ui->getBalanceButton->setVisible(false);
         break;
     case ReceivingTab:
-        ui->labelExplanation->setText(tr("These are your Uro addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you. Click a address below to see how much is in that account."));
+        ui->labelExplanation->setText(tr("These are your Uro addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you."));
         ui->deleteAddress->setVisible(false);
         ui->signMessage->setVisible(true);
-        ui->getBalanceButton->setVisible(true);
         break;
     }
 
@@ -404,40 +393,3 @@ void AddressBookPage::selectNewAddress(const QModelIndex &parent, int begin, int
         newAddressToSelect.clear();
     }
 }
-
-
-
-void AddressBookPage::on_getBalanceButton_clicked()
-{
-
-    //QString address = ui->tableView->selectionModel()->selectedRows().at(0).data(AddressTableModel::Address).toString();
-    //QMessageBox::information(this, "Balance: ", val);
-    /*
-    GUIUtil::copyEntryData(ui->tableView, AddressTableModel::Address);
-    QString address = QApplication::clipboard()->text();
-
-    GUIUtil::copyEntryData(ui->tableView, AddressTableModel::Label);
-    QString label = QApplication::clipboard()->text();
-
-    const AddressTableModel at;
-    int64_t balance = at.getBalance(address.toStdString());
-
-    std::string balanceString = boost::lexical_cast<std::string>(balance);
-    std::cout << "" + balanceString + "" << std::endl;
-
-    QString balanceQstring = QString::fromStdString(balanceString);
-    */
-    //QMessageBox msgBox;
-    //msgBox.setText("TITLE.");
-    //msgBox.setInformativeText("Account Balance: " + balanceQstring + "\n" +"Label: " + label + "\n" + "Address: " + address);
-    //msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Discard | QMessageBox::Cancel);
-    //msgBox.setDefaultButton(QMessageBox::Ok);
-    //int ret = msgBox.exec();
-    /*
-    QMessageBox::information(this, "TITLE", "Account Balance: " + balanceQstring + "\n" +"Label: " + label + "\n" + "Address: " + address);
-    */
-}
-// ok sweet, so as u can see its not that....
-// what do you think is up ???
-//
-

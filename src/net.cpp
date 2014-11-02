@@ -1194,13 +1194,12 @@ void MapPort(bool)
 static const char *strMainNetDNSSeed[][2] = {
     {"128.199.204.45", "128.199.204.45"},
     {"108.61.103.54", "108.61.103.54"},
-	{"uro.io", "128.199.204.45"},
-	{"23.227.163.23","23.227.163.23"},
+    {"uro.io", "128.199.204.45"},
+    {"23.227.163.23", "23.227.163.23"},
     {NULL, NULL}
 };
 
 static const char *strTestNetDNSSeed[][2] = {
-    {"", ""},
     {NULL, NULL}
 };
 
@@ -1249,7 +1248,7 @@ void ThreadDNSAddressSeed()
 
 unsigned int pnSeed[] =
 {
-    0xe3590ccf
+    0xE3590CCF, 0xA32F8368, 0x7D5A8368, 0xADB0A76B, 0x9335D382
 };
 
 void DumpAddresses()

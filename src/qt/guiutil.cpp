@@ -187,7 +187,6 @@ void setClipboard(const QString& str)
     QApplication::clipboard()->setText(str, QClipboard::Selection);
 }
 
-
 QString getSaveFileName(QWidget *parent, const QString &caption,
                                  const QString &dir,
                                  const QString &filter,

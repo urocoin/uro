@@ -280,13 +280,3 @@ bool OptionsDialog::eventFilter(QObject *object, QEvent *event)
     }
     return QDialog::eventFilter(object, event);
 }
-
-void OptionsDialog::on_coinControlFeatures_clicked()
-{
-
-}
-
-void OptionsDialog::on_coinControlFeatures_toggled(bool checked)
-{
-
-}
